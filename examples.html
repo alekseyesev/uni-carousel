@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>Примеры использования компонента uniCarousel | uni-carousel.js</title>
+	    <meta charset="utf-8" />
+		<link rel="stylesheet" href="jquery.uni-carousel.css" />
+		<style>
+			body {
+				margin: 0;
+				padding: 30px;
+				font: 400 14px/1.5 Arial, sans-serif;
+				text-align: center;
+			}
+			label {
+				margin: 5px 0;
+			}
+			input,
+			select {
+				display: inline-block;
+				border: 1px solid #ccc;
+				margin: 0 0 0 1em;
+				padding: 5px 10px;
+				border-radius: 3px;
+				outline: none;
+			}
+			option {
+				display: inline-block;
+				outline: none;
+			}
+			.divider {
+				margin: 30px auto;
+				border-style: none;
+				border-bottom: 1px solid #ccc;
+				max-width: 800px;
+			}
+			.title {
+				margin: 0 0 20px;
+				font-size: 1.5em;
+			}
+			.main-title {
+				margin: 0 0 30px;
+				font-size: 2em;
+				text-transform: uppercase;
+			}
+		    .settings {
+				display: inline-block;
+				text-align: left;
+			}
+		</style>
+    </head>
+	<body>
+		<h1 class="main-title title">Примеры использования и настройки<br />компонента uniCarousel</h1>
+	    <div class="uni-carousel" data-uni-options='{"mode":"carousel","width":800,"height":200,"count":3,"time":300,"interval":2000,"inverse":false,"cycle":true,"autoplay":true,"pause":true,"orientation":"horizontal"}'>
+	        <div class="uni-carousel-inner">
+			    <div class="uni-carousel-inner-limit">
+			        <div class="uni-carousel-item uni-carousel-item_active">
+				        <div class="uni-carousel-item-inner">
+					        <img class="uni-carousel-item-media" src="images/1.webp" alt="" />
+					    </div>
+				    </div>
+				    <div class="uni-carousel-item">
+				        <div class="uni-carousel-item-inner">
+					        <img class="uni-carousel-item-media" src="images/2.webp" alt="" />
+					    </div>
+				    </div>
+				    <div class="uni-carousel-item">
+				        <div class="uni-carousel-item-inner">
+					        <img class="uni-carousel-item-media" src="images/3.webp" alt="" />
+					    </div>
+				    </div>
+				    <div class="uni-carousel-item">
+				        <div class="uni-carousel-item-inner">
+					        <img class="uni-carousel-item-media" src="images/4.webp" alt="" />
+					    </div>
+				    </div>
+				    <div class="uni-carousel-item">
+				        <div class="uni-carousel-item-inner">
+					        <img class="uni-carousel-item-media" src="images/5.webp" alt="" />
+					    </div>
+				    </div>
+				    <div class="uni-carousel-item">
+				        <div class="uni-carousel-item-inner">
+					        <img class="uni-carousel-item-media" src="images/6.webp" alt="" />
+					    </div>
+				    </div>
+				</div>
+			</div>
+		    <a class="uni-carousel-control uni-carousel-control_prev" href="javascript:void(0)" title="Назад"></a>
+		    <a class="uni-carousel-control uni-carousel-control_next" href="javascript:void(0)" title="Вперед"></a>
+		</div>
+		<hr class="divider" />
+		<div class="settings">
+			<h3 class="title">Параметры компонента</h3>
+			<form id="options">
+				<label for="mode">Режим работы</label>
+				<select id="mode">
+					<option value="carousel" selected="selected">Карусель</option>
+					<option value="slider">Слайдер</option>
+				</select><br /><br />
+				<label>
+					Ширина
+					<input id="width" type="number" min="100" max="800" step="100" value="800" />
+				</label><br /><br />
+				<label>
+					Высота
+				<input id="height" type="number" min="100" max="600" step="100" value="200" />
+				</label><br /><br />
+				<label>
+					Количество слайдов
+					<input id="count" type="number" min="1" max="3" step="1" value="3" />
+				</label><br /><br />
+				<label>
+					Время анимации
+					<input id="time" type="number" min="50" max="1000" step="50" value="300" />
+				</label><br /><br />
+				<label>
+					Время показа слайда
+					<input id="interval" type="number" min="50" max="5000" step="50" value="2000" />
+				</label><br /><br />
+				<label for="orientation">Направление движения слайдов</label>
+				<select id="orientation">
+					<option value="horizontal" selected="selected">Горизонтальное</option>
+					<option value="vertical">Вертикальное</option>
+				</select><br /><br />
+				<label>
+					Инвертировать воспроизведение
+					<input id="inverse" type="checkbox" />
+				</label><br /><br />
+				<label>
+					Зациклить воспроизведение
+					<input id="cycle" type="checkbox" checked="checked" />
+				</label><br /><br />
+				<label>
+					Автовоспроизведение
+					<input id="autoplay" type="checkbox" checked="checked" />
+				</label><br /><br />
+				<label>
+					Пауза при наведении мыши
+					<input id="pause" type="checkbox" checked="checked" />
+				</label>
+			</form>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" defer="defer"></script>
+		<script src="jquery.uni-carousel.js" defer="defer" onload="onUniCarouselLoaded()"></script>
+		<script>
+		function onUniCarouselLoaded() {
+			(function($) {
+				$(function() {
+				
+					var options       = {},
+						$formControls = $('#options [id]');
+						
+					$formControls.on('change', function(e) {
+					
+						$formControls.each(function(i, formControl) {
+							if (formControl.type === 'number') {
+								options[formControl.id] = parseInt($(formControl).val());
+							}
+							else if (formControl.type === 'checkbox') { 
+								options[formControl.id] = formControl.checked ? true : false;
+							}
+							else {
+								options[formControl.id] = $(formControl).val();
+							}
+						});
+
+						$('.uni-carousel')
+							.uniCarousel(options)
+							.data('uniOptions', JSON.stringify(options))
+							.attr('data-uni-options', JSON.stringify(options));
+						
+					});
+				});
+			})(jQuery)
+		}
+		</script>
+	</body>
+<html>
